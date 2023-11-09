@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-caketaster-hellodjango-hq7msw355xy.ws-us105.gitpod.io','8000-caketaster-hellodjango-hq7msw355xy.ws-us106.gitpod.io']
+ALLOWED_HOSTS = ['8000-caketaster-hellodjango-hq7msw355xy.ws-us105.gitpod.io','8000-caketaster-hellodjango-hq7msw355xy.ws-us106.gitpod.io', 'caketaster-todo-app-382e7d899e17.herokuapp.com/']
 
 
 # Application definition

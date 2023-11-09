@@ -29,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = development
+DEBUG = 'DEBUG' in os.environ
 
 if development:
     ALLOWED_HOSTS = ['localhost', '8000-caketaster-hellodjango-hq7msw355xy.ws-us105.gitpod.io','8000-caketaster-hellodjango-hq7msw355xy.ws-us106.gitpod.io']
@@ -82,16 +82,30 @@ WSGI_APPLICATION = 'django_todo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/ 
 
-if development:
+# if development:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': os.path.join(BASE_DIR / 'db.sqlite3'),
+#         }
+#     }
+# else: 
+#     DATABASES = {
+#         'default': dj_database_url.parse(os.environ.get('postgres://zjskqxka:Xd5A1GZagO_RUiK_8pdZgLyKHQSIIm2R@rain.db.elephantsql.com/zjskqxka'))
+#     }
+
+if "DATABASE_URL" in os.environ:
+    print("database = PostgreSQL via Heroku")
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR / 'db.sqlite3'),
-        }
+        'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
     }
-else: 
+else:
+    print("database = db.sqlite3")
     DATABASES = {
-        'default': dj_database_url.parse(os.environ.get('postgres://zjskqxka:Xd5A1GZagO_RUiK_8pdZgLyKHQSIIm2R@rain.db.elephantsql.com/zjskqxka'))
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
     }
 
 
